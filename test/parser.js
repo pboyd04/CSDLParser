@@ -1,7 +1,7 @@
 var csdl = require('../index');
 
 module.exports.parse = function(assert) {
-  var metadata = csdl.parseMetadataFile(__dirname + '/fixtures/SimpleMetadata.xml');
+  var metadata = csdl.parseMetadataFile(__dirname + '/fixtures/SimpleMetadata.xml', {}, function(error, metadata) {
 
   actionsTest(metadata.Actions, assert);
   functionsTest(metadata.Functions, assert);
@@ -10,14 +10,12 @@ module.exports.parse = function(assert) {
   entityContainersTest(metadata.EntityContainers, assert);
   complexTypesTest(metadata.ComplexTypes, assert);
 
-  assert.equal(Object.keys(metadata._options).length, 2);
-  assert.equal(metadata._options.useLocal, null);
-  assert.equal(metadata._options.useNetwork, true);
   assert.equal(Object.keys(metadata.Annotations).length, 0);
   assert.equal(Object.keys(metadata.Terms).length, 0);
   assert.equal(Object.keys(metadata.TypeDefinitions).length, 0);
 
   assert.done();
+  });
 }
 
 function actionsTest(actions, assert) {
