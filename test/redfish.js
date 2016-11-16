@@ -11,3 +11,18 @@ module.exports.redfish = function(assert) {
     assert.done();
   });
 }
+
+csdl.parseMetadataFile(__dirname + '/fixtures/Resource_v1.xml', {}, function(error, metadata) {
+    if(error) {
+      console.log(error);
+    }
+    console.log(metadata);
+  });
+
+/*
+csdl.parseMetadataUri('http://docs.oasis-open.org/odata/odata/v4.0/errata03/csd01/complete/vocabularies/Org.OData.Core.V1.xml', {}, function(error, metadata) {
+  if(error) {
+    console.log(error);
+  }
+  console.log(metadata);
+});*/
