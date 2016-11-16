@@ -24,3 +24,7 @@ cache:
   bundler: true
   directories:
   - node_modules # NPM packages
+install:
+  - npm install jscoverage coveralls
+after_script:
+  - npm run coveralls

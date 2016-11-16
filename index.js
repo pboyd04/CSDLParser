@@ -1,4 +1,4 @@
-var Metadata = require('./lib/Metadata');
+var Metadata = process.env.CSDL_COV ? require('./lib-cov/Metadata') : require('./lib/Metadata');
 
 //constants
 module.exports.version = require('./package.json').version;

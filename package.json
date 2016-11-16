@@ -4,7 +4,9 @@
   "description": "CSDL Metadata Parser",
   "main": "./index",
   "scripts": {
-    "test": "nodeunit test"
+    "test": "nodeunit test",
+    "coverage": "jscoverage lib && set CSDL_COV=1 && nodeunit --reporter=lcov test",
+    "coveralls": "jscoverage lib && CSDL_COV=1 nodeunit --reporter=lcov test | coveralls"
   },
   "engines": { 
     "node" : ">=4.3.2"
