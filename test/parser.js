@@ -10,24 +10,13 @@ module.exports.parse = function(assert) {
     var schema = metadata['Microsoft.OData.Service.Sample.TrippinInMemory.Models'];
     assert.notEqual(schema, undefined);
     schemaTest(schema, assert);
-    /*
-  actionsTest(metadata.Actions, assert);
-  functionsTest(metadata.Functions, assert);
-  enumsTest(metadata.EnumTypes, assert);
-  entityTypesTest(metadata.EntityTypes, assert);
-  entityContainersTest(metadata.EntityContainers, assert);
-  complexTypesTest(metadata.ComplexTypes, assert);
 
-  assert.equal(Object.keys(metadata.Annotations).length, 0);
-  assert.equal(Object.keys(metadata.Terms).length, 0);
-  assert.equal(Object.keys(metadata.TypeDefinitions).length, 0);
-  */
     assert.done();
   });
 }
 
 function schemaTest(schema, assert) {
-  assert.equal(Object.keys(schema).length, 25);
+  assert.equal(Object.keys(schema).length, 26);
   assert.notEqual(schema.Person, undefined);
   assert.equal(schema.Person.constructor.name, 'EntityType');
   assert.deepEqual(schema.Person.Annotations, {});
