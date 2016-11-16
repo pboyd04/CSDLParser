@@ -31,9 +31,9 @@ function schemaTest(schema, assert) {
   assert.deepEqual(schema.Person.Properties.HomeAddress, {Annotations: {}, Type: 'Microsoft.OData.Service.Sample.TrippinInMemory.Models.Location'});
   assert.deepEqual(schema.Person.Properties.FavoriteFeature, {Annotations: {}, Type: 'Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature', Nullable: false});
   assert.deepEqual(schema.Person.Properties.Features, {Annotations: {}, Type: 'Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature)', Nullable: false});
-  assert.deepEqual(schema.Person.Properties.Friends, {Annotations: {}, Type: 'Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)'});
-  assert.deepEqual(schema.Person.Properties.BestFriend, {Annotations: {}, Type: 'Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person'});
-  assert.deepEqual(schema.Person.Properties.Trips, {Annotations: {}, Type: 'Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip)'}); 
+  assert.deepEqual(schema.Person.Properties.Friends, {Name: 'Friends', Annotations: {}, Type: 'Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)'});
+  assert.deepEqual(schema.Person.Properties.BestFriend, {Name: 'BestFriend', Annotations: {}, Type: 'Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person'});
+  assert.deepEqual(schema.Person.Properties.Trips, {Name: 'Trips', Annotations: {}, Type: 'Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip)'}); 
 
   assert.notEqual(schema.Airline, undefined);
   assert.equal(schema.Airline.constructor.name, 'EntityType');
