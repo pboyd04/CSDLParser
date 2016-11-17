@@ -6,7 +6,7 @@ module.exports.parse = function(assert) {
       console.log(error);
       return;
     }
-    assert.equal(Object.keys(metadata).length, 1);
+    assert.equal(Object.keys(metadata).length, 3);
     var schema = metadata['Org.OData.Core.V1'];
     assert.notEqual(schema, undefined);
     schemaTest(schema, assert);
@@ -26,6 +26,6 @@ module.exports.baduri = function(assert) {
 }
 
 function schemaTest(schema, assert) {
-  assert.equal(Object.keys(schema).length, 21);
+  assert.equal(Object.keys(schema).length, 22);
 }
 /* vim: set tabstop=2 shiftwidth=2 expandtab: */
