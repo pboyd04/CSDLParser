@@ -12,7 +12,6 @@ module.exports.redfish = function(assert) {
   });
 }
 
-/*
 module.exports.redfishNoNetwork = function(assert) {
   var options = {
     useLocal: __dirname + '/fixtures/Redfish/',
@@ -27,6 +26,7 @@ module.exports.redfishNoNetwork = function(assert) {
   });
 }
 
+/*
 var assert = require('assert');
 assert.done = function() {};
 module.exports.redfishNoNetwork(assert);*/
