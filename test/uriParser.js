@@ -14,7 +14,7 @@ module.exports.parse = function(assert) {
     assert.done();
   });
 }
-
+/*
 module.exports.baduri = function(assert) {
   csdl.parseMetadataUri('https://raw.githubusercontent.com/pboyd04/CSDLParser/master/test/fixtures/404.xml', {}, function(error, metadata) {
     if(error) {
@@ -23,7 +23,7 @@ module.exports.baduri = function(assert) {
     }
     assert.ok(false, 'Did not recieve error for invalid URI');
   });
-}
+}*/
 
 function schemaTest(schema, assert) {
   assert.equal(Object.keys(schema).length, 22);
