@@ -1,8 +1,8 @@
 {
   "name": "CSDLParser",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "CSDL Metadata Parser",
-  "main": "./index",
+  "main": "./index.js",
   "scripts": {
     "test": "nodeunit test",
     "coverage": "jscoverage lib && set CSDL_COV=1 && nodeunit --reporter=lcov test",
@@ -19,8 +19,7 @@
   },
   "dependencies": {
     "libxmljs-mt": "^0.18.0",
-    "request": "^2.78.0",
-    "wait.for": "^0.6.6"
+    "request": "^2.78.0"
   },
   "devDependencies": {
     "nodeunit": "0.9.0"
