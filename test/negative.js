@@ -8,31 +8,59 @@ const invalidAnnotationAttribute = '<Annotation Term="Test" BadAttr="Test"></Ann
 const invalidAnnotationBadBool = '<Annotation Term="Test" Bool="Bad"></Annotation>';
 
 module.exports.negative = function(assert) {
-    assert.throws(() => {ParserCommon.initEntity(null, 'test');}, Error);
+  try {
+    ParserCommon.initEntity(null, 'test');
+    assert.ok(false, 'Did not throw expected unbound error!');
+  }
+  catch(e) {
+    assert.notEqual(e, undefined);
+    assert.equal(e.message, 'Function not bound before call!'); 
+  }
 
-    assert.throws(() => {
-      var doc = XML.parseXml(simpleWithText);
-      var root = doc.root();
-      ParserCommon.parseEntity(root, 'test', null, null);
-    }, Error);
+  var doc = XML.parseXml(simpleWithText);
+  var root = doc.root();
+  try {
+    ParserCommon.parseEntity(root, 'test', null, null);
+    assert.ok(false, 'Did not throw expected entity type error!');
+  }
+  catch(e) {
+    assert.notEqual(e, undefined);
+    assert.equal(e.message, 'Unknown text element in test! Text = "Text"');
+  }
 
-    assert.throws(() => {
-      var doc = XML.parseXml(invalidAnnotationElement);
-      var root = doc.root();
-      var a = new Annotation(root);
-    }, Error);
+  doc = XML.parseXml(invalidAnnotationElement);
+  root = doc.root();
+  try {
+    var a = new Annotation(root);
+    assert.ok(false, 'Did not throw expected invalid element error!');
+  }
+  catch(e) {
+    assert.notEqual(e, undefined);
+    assert.equal(e.message, 'Unknown element name BadElement');
+  }
 
-    assert.throws(() => {
-      var doc = XML.parseXml(invalidAnnotationAttribute);
-      var root = doc.root();
-      var a = new Annotation(root);
-    }, Error);
+  doc = XML.parseXml(invalidAnnotationAttribute);
+  root = doc.root();
+  try {
+    var a = new Annotation(root);
+    assert.ok(false, 'Did not throw expected invalid attribute error!');
+  }
+  catch(e) {
+    assert.notEqual(e, undefined);
+    assert.equal(e.message, 'Unknown attribute name BadAttr');
+  }
 
-    assert.throws(() => {
-      var doc = XML.parseXml(invalidAnnotationBadBool);
-      var root = doc.root();
-      var a = new Annotation(root);
-    }, Error);
+  doc = XML.parseXml(invalidAnnotationBadBool);
+  root = doc.root();
+  try {
+    var a = new Annotation(root);
+    assert.ok(false, 'Did not throw expected invalid attribute error!');
+  }
+  catch(e) {
+    assert.notEqual(e, undefined);
+    assert.equal(e.message, 'Unknown value Bad for attribute named Bool');
+  }
 
-    assert.done();
+  assert.done();
 }
+/* vim: set tabstop=2 shiftwidth=2 expandtab: */
