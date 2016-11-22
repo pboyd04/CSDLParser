@@ -1,6 +1,6 @@
 {
   "name": "CSDLParser",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "CSDL Metadata Parser",
   "main": "./index.js",
   "scripts": {
