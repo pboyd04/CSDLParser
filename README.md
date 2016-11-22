@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/pboyd04/CSDLParser.svg?branch=master)](https://travis-ci.org/pboyd04/CSDLParser)
 [![Dependency Status](https://david-dm.org/pboyd04/CSDLParser.svg)](https://david-dm.org/pboyd04/CSDLParser)
+[![Coverage Status](https://coveralls.io/repos/github/pboyd04/CSDLParser/badge.svg?branch=master)](https://coveralls.io/github/pboyd04/CSDLParser?branch=master)
 
 ---
 
