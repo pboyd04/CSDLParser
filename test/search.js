@@ -15,6 +15,14 @@ module.exports.search = function(assert) {
     assert.equal(favoriteAirline[0].Name, 'GetFavoriteAirline');
     assert.equal(favoriteAirline[0].IsBound, true);
 
+    var annotations = csdl.search(metadata, 'Annotation', 'Org.OData.Core.V1.OptimisticConcurrency');
+    assert.notEqual(annotations[0], undefined);
+    assert.notEqual(annotations[0].Collection, undefined);
+
+    annotations = csdl.search(metadata, 'Annotation');
+    assert.notEqual(annotations[0], undefined);
+    assert.notEqual(annotations[0].Collection, undefined);
+
     assert.done();
   });
 }
