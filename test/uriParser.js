@@ -26,6 +26,6 @@ module.exports.baduri = function(assert) {
 }*/
 
 function schemaTest(schema, assert) {
-  assert.equal(Object.keys(schema).length, 22);
+  assert.equal(Object.keys(schema).length, 23);
 }
 /* vim: set tabstop=2 shiftwidth=2 expandtab: */
