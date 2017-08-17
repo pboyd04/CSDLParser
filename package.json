@@ -1,6 +1,6 @@
 {
   "name": "CSDLParser",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "description": "CSDL Metadata Parser",
   "main": "./index.js",
   "scripts": {
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "libxmljs-mt": "^0.18.0",
-    "request": "^2.78.0"
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "nodeunit": "0.9.0"
