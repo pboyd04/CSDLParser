@@ -20,7 +20,7 @@ function schemaTest(schema, assert) {
   assert.notEqual(schema.Person, undefined);
   assert.equal(schema.Person.constructor.name, 'EntityType');
   assert.deepEqual(schema.Person.Annotations, {});
-  assert.deepEqual(schema.Person.Properties.UserName, {Name: 'UserName', Annotations: {}, Type: 'Edm.String', Nullable: false});
+  assert.deepEqual(schema.Person.Properties.UserName, {Name: 'UserName', Annotations: {}, Type: 'Edm.String', Nullable: false, IsKey: true});
   assert.deepEqual(schema.Person.Properties.FirstName, {Name: 'FirstName', Annotations: {}, Type: 'Edm.String', Nullable: false});
   assert.deepEqual(schema.Person.Properties.LastName, {Name: 'LastName', Annotations: {}, Type: 'Edm.String'});
   assert.deepEqual(schema.Person.Properties.MiddleName, {Name: 'MiddleName', Annotations: {}, Type: 'Edm.String'});
@@ -33,19 +33,19 @@ function schemaTest(schema, assert) {
   assert.deepEqual(schema.Person.Properties.Features, {Name: 'Features', Annotations: {}, Type: 'Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Feature)', Nullable: false});
   assert.deepEqual(schema.Person.Properties.Friends, {Name: 'Friends', Annotations: {}, Type: 'Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person)'});
   assert.deepEqual(schema.Person.Properties.BestFriend, {Name: 'BestFriend', Annotations: {}, Type: 'Microsoft.OData.Service.Sample.TrippinInMemory.Models.Person'});
-  assert.deepEqual(schema.Person.Properties.Trips, {Name: 'Trips', Annotations: {}, Type: 'Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip)'}); 
+  assert.deepEqual(schema.Person.Properties.Trips, {Name: 'Trips', Annotations: {}, Type: 'Collection(Microsoft.OData.Service.Sample.TrippinInMemory.Models.Trip)'});
 
   assert.notEqual(schema.Airline, undefined);
   assert.equal(schema.Airline.constructor.name, 'EntityType');
   assert.deepEqual(schema.Airline.Annotations, {});
-  assert.deepEqual(schema.Airline.Properties.AirlineCode, {Name: 'AirlineCode', Annotations: {}, Type: 'Edm.String', Nullable: false});
+  assert.deepEqual(schema.Airline.Properties.AirlineCode, {Name: 'AirlineCode', Annotations: {}, Type: 'Edm.String', Nullable: false, IsKey: true});
   assert.deepEqual(schema.Airline.Properties.Name, {Name: 'Name', Annotations: {}, Type: 'Edm.String'});
 
   assert.notEqual(schema.Airport, undefined);
   assert.equal(schema.Airport.constructor.name, 'EntityType');
   assert.deepEqual(schema.Airport.Annotations, {});
   assert.deepEqual(schema.Airport.Properties.Name, {Name: 'Name', Annotations: {}, Type: 'Edm.String'});
-  assert.deepEqual(schema.Airport.Properties.IcaoCode, {Name: 'IcaoCode', Annotations: {}, Type: 'Edm.String', Nullable: false});
+  assert.deepEqual(schema.Airport.Properties.IcaoCode, {Name: 'IcaoCode', Annotations: {}, Type: 'Edm.String', Nullable: false, IsKey: true});
   assert.deepEqual(schema.Airport.Properties.IataCode, {Name: 'IataCode', Annotations: {}, Type: 'Edm.String'});
   assert.deepEqual(schema.Airport.Properties.Location, {Name: 'Location', Annotations: {}, Type: 'Microsoft.OData.Service.Sample.TrippinInMemory.Models.AirportLocation'});
 
@@ -104,13 +104,13 @@ function schemaTest(schema, assert) {
   assert.deepEqual(schema.ShareTrip.Parameters.userName, {
     Name: 'userName',
     Annotations: {},
-    Nullable: false, 
+    Nullable: false,
     Unicode: false,
     Type: 'Edm.String'});
   assert.deepEqual(schema.ShareTrip.Parameters.tripId, {
     Name: 'tripId',
     Annotations: {},
-    Nullable: false, 
+    Nullable: false,
     Type: 'Edm.Int32'});
 
   assert.notEqual(schema.Container, undefined);
