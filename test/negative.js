@@ -1,6 +1,7 @@
 const ParserCommon = require('../lib/ParserCommon');
 const Annotation = require('../lib/Annotation');
-const XML = require('libxmljs-mt');
+//const XML = require('libxmljs-mt');
+const XML = require('libxmljs');
 
 const simpleWithText = '<root>Text</root>';
 const invalidAnnotationElement = '<Annotation Term="Test"><BadElement></BadElement></Annotation>';
