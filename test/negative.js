@@ -14,60 +14,60 @@ const noSchema = '<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.or
 
 describe('Negative', function(){
   it('Unbound Function', function() {
-    assert.throws(() => {ParserCommon.initEntity(null, 'test');}, {message: 'Function not bound before call!'});
+    assert.throws(function(){ParserCommon.initEntity(null, 'test');}, {message: 'Function not bound before call!'});
   });
   it('Unknown Text', function(){
     let doc = XML.parseXml(simpleWithText);
     let root = doc.root();
-    assert.throws(() => {ParserCommon.parseEntity(root, 'test', null, null);}, {message: 'Unknown text element in test! Text = "Text"'});
+    assert.throws(function(){ParserCommon.parseEntity(root, 'test', null, null);}, {message: 'Unknown text element in test! Text = "Text"'});
   });
   it('Unknown Element', function(){
     let doc = XML.parseXml(invalidAnnotationElement);
     let root = doc.root();
-    assert.throws(() => {new Annotation(root);}, {message: 'Unknown element name BadElement'});
+    assert.throws(function(){new Annotation(root);}, {message: 'Unknown element name BadElement'});
   });
   it('Unknown Attribute', function(){
     let doc = XML.parseXml(invalidAnnotationAttribute);
     let root = doc.root();
-    assert.throws(() => {new Annotation(root);}, {message: 'Unknown attribute name BadAttr'});
+    assert.throws(function(){new Annotation(root);}, {message: 'Unknown attribute name BadAttr'});
   });
   it('Unknown Attribute Value', function(){
     let doc = XML.parseXml(invalidAnnotationBadBool);
     let root = doc.root();
-    assert.throws(() => {new Annotation(root);}, {message: 'Unknown value Bad for attribute named Bool'});
+    assert.throws(function(){new Annotation(root);}, {message: 'Unknown value Bad for attribute named Bool'});
   });
   it('Non CSDL', function(done) {
-    csdl.parseMetadata(simpleWithText, {}, (error, data) => {
+    csdl.parseMetadata(simpleWithText, {}, function(error, data){
       assert.notEqual(error, null);
       done();
     });
   });
   it('Bad XML', function(done) {
-    csdl.parseMetadata(badXML, {}, (error, data) => {
+    csdl.parseMetadata(badXML, {}, function(error, data){
       assert.notEqual(error, null);
       done();
     });
   });
   it('Non existant file', function(done) {
-    csdl.parseMetadataFile('Invalid_File.xml', {}, (error, data) => {
+    csdl.parseMetadataFile('Invalid_File.xml', {}, function(error, data){
       assert.notEqual(error, null);
       done();
     });
   });
   it('Non existant URL', function(done) {
-    csdl.parseMetadataUri('fake://invalid.com/Invalid_File.xml', {}, (error, data) => {
+    csdl.parseMetadataUri('fake://invalid.com/Invalid_File.xml', {}, function(error, data){
       assert.notEqual(error, null);
       done();
     });
   });
   it('Bad DataService Tag', function(done) {
-    csdl.parseMetadata(noDataService, {}, (error, data) => {
+    csdl.parseMetadata(noDataService, {}, function(error, data){
       assert.notEqual(error, null);
       done();
     });
   });
   it('Bad Schema Tag', function(done) {
-    csdl.parseMetadata(noSchema, {}, (error, data) => {
+    csdl.parseMetadata(noSchema, {}, function(error, data){
       assert.notEqual(error, null);
       done();
     });
