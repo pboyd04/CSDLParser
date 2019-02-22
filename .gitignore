@@ -1,3 +1,6 @@
 /node_modules
 /lib-cov
 .idea
+.nyc_output
+#While NPM recommends commiting this file, it causes nothing but grief moving between windows and linux builds. So don't commit it to this project
+package-lock.json
