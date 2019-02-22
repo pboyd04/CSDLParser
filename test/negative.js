@@ -1,7 +1,7 @@
 const ParserCommon = require('../lib/ParserCommon');
 const Annotation = require('../lib/Annotation');
 const XML = require('libxmljs');
-const assert = require('assert');
+const assert = require('chai').assert;
 const csdl = require('../index');
 
 const badXML = '<root>Text</bob>';
@@ -14,27 +14,27 @@ const noSchema = '<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.or
 
 describe('Negative', function(){
   it('Unbound Function', function() {
-    assert.throws(function(){ParserCommon.initEntity(null, 'test');}, {message: 'Function not bound before call!'});
+    assert.throws(function(){ParserCommon.initEntity(null, 'test');}, Error, 'Function not bound before call!');
   });
   it('Unknown Text', function(){
     let doc = XML.parseXml(simpleWithText);
     let root = doc.root();
-    assert.throws(function(){ParserCommon.parseEntity(root, 'test', null, null);}, {message: 'Unknown text element in test! Text = "Text"'});
+    assert.throws(function(){ParserCommon.parseEntity(root, 'test', null, null);}, Error, 'Unknown text element in test! Text = "Text"');
   });
   it('Unknown Element', function(){
     let doc = XML.parseXml(invalidAnnotationElement);
     let root = doc.root();
-    assert.throws(function(){new Annotation(root);}, {message: 'Unknown element name BadElement'});
+    assert.throws(function(){new Annotation(root);}, Error, 'Unknown element name BadElement');
   });
   it('Unknown Attribute', function(){
     let doc = XML.parseXml(invalidAnnotationAttribute);
     let root = doc.root();
-    assert.throws(function(){new Annotation(root);}, {message: 'Unknown attribute name BadAttr'});
+    assert.throws(function(){new Annotation(root);}, Error, 'Unknown attribute name BadAttr');
   });
   it('Unknown Attribute Value', function(){
     let doc = XML.parseXml(invalidAnnotationBadBool);
     let root = doc.root();
-    assert.throws(function(){new Annotation(root);}, {message: 'Unknown value Bad for attribute named Bool'});
+    assert.throws(function(){new Annotation(root);}, Error, 'Unknown value Bad for attribute named Bool');
   });
   it('Non CSDL', function(done) {
     csdl.parseMetadata(simpleWithText, {}, function(error, data){
