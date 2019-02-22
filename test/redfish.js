@@ -6,6 +6,7 @@ describe('Redfish', function() {
   describe('Local File with Network', function() {
     let metadata;
     before(function(done) {
+      this.timeout(10000);
       csdl.parseMetadataFile(__dirname + '/fixtures/Redfish/Resource_v1.xml', {}, function(error, meta) {
         assert.equal(error, null);
         metadata = meta;
@@ -69,7 +70,7 @@ describe('Redfish', function() {
   describe('Remote File: Resource', function() {
     let metadata;
     before(function(done) {
-      this.timeout(5000);
+      this.timeout(10000);
       csdl.parseMetadataUri('https://redfish.dmtf.org/schemas/Resource_v1.xml', {}, function(error, meta) {
         assert.equal(error, null);
         metadata = meta;
@@ -100,7 +101,7 @@ describe('Redfish', function() {
   describe('Remote File: ServiceRoot', function() {
     let metadata;
     before(function(done) {
-      this.timeout(5000);
+      this.timeout(10000);
       csdl.parseMetadataUri('https://redfish.dmtf.org/schemas/ServiceRoot_v1.xml', {}, function(error, meta) {
         assert.equal(error, null);
         metadata = meta;
