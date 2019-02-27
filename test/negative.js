@@ -1,6 +1,6 @@
 const ParserCommon = require('../lib/ParserCommon');
 const Annotation = require('../lib/Annotation');
-const XML = require('libxmljs');
+const xmldoc = require('xmldoc');
 const assert = require('chai').assert;
 const csdl = require('../index');
 
@@ -13,28 +13,22 @@ const noDataService = '<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-op
 const noSchema = '<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:DataServices><BadSchema Namespace="Test1" xmlns="http://docs.oasis-open.org/odata/ns/edm"></BadSchema></edmx:DataServices></edmx:Edmx>';
 
 describe('Negative', function(){
-  it('Unbound Function', function() {
-    assert.throws(function(){ParserCommon.initEntity(null, 'test');}, Error, 'Function not bound before call!');
-  });
   it('Unknown Text', function(){
-    let doc = XML.parseXml(simpleWithText);
-    let root = doc.root();
-    assert.throws(function(){ParserCommon.parseEntity(root, 'test', null, null);}, Error, 'Unknown text element in test! Text = "Text"');
+    let doc = new xmldoc.XmlDocument(simpleWithText);
+    let parser = new ParserCommon();
+    assert.throws(function(){parser.parseEntity(doc, 'test');}, Error, 'Unknown text element in test! Text = "Text"');
   });
   it('Unknown Element', function(){
-    let doc = XML.parseXml(invalidAnnotationElement);
-    let root = doc.root();
-    assert.throws(function(){new Annotation(root);}, Error, 'Unknown element name BadElement');
+    let doc = new xmldoc.XmlDocument(invalidAnnotationElement);
+    assert.throws(function(){new Annotation(doc);}, Error, 'Unknown element name BadElement');
   });
   it('Unknown Attribute', function(){
-    let doc = XML.parseXml(invalidAnnotationAttribute);
-    let root = doc.root();
-    assert.throws(function(){new Annotation(root);}, Error, 'Unknown attribute name BadAttr');
+    let doc = new xmldoc.XmlDocument(invalidAnnotationAttribute);
+    assert.throws(function(){new Annotation(doc);}, Error, 'Unknown attribute name BadAttr');
   });
   it('Unknown Attribute Value', function(){
-    let doc = XML.parseXml(invalidAnnotationBadBool);
-    let root = doc.root();
-    assert.throws(function(){new Annotation(root);}, Error, 'Unknown value Bad for attribute named Bool');
+    let doc = new xmldoc.XmlDocument(invalidAnnotationBadBool);
+    assert.throws(function(){new Annotation(doc);}, Error, 'Unknown value Bad for attribute named Bool');
   });
   it('Non CSDL', function(done) {
     csdl.parseMetadata(simpleWithText, {}, function(error, data){

@@ -1,7 +1,7 @@
 var csdl = require('../index');
 var assert = require('assert');
 var ParserCommon = require('../lib/ParserCommon');
-var XML = require('libxmljs');
+var xmldoc = require('xmldoc');
 
 describe('Corner Cases', function() {
   describe('Key Attribute', function() {
@@ -32,23 +32,16 @@ describe('Corner Cases', function() {
   });
   describe('ParserCommon', function() {
     it('No attribute or element case', function() {
-      let myobj = {};
-      let init = ParserCommon.initEntity.bind(myobj);
-      init(null, 'Test');
-      assert.ok('Passed');
-    });
-    it('No element callback case', function() {
-      ParserCommon.parseEntity(null, 'Test', undefined, undefined);
+      let myobj = new ParserCommon();
+      myobj.init(null);
       assert.ok('Passed');
     });
     it('Attribute parent case', function() {
       let test = {};
-      let myobj = {validAttributes: {'x': {'parent': test}}};
-      let doc = new XML.Document();
-      let node = doc.node('Test');
-      let attr = node.attr('x', 'value');
-      let init = ParserCommon.initEntity.bind(myobj);
-      init(node, 'Test');
+      let myobj = new ParserCommon();
+      myobj.validAttributes = {'x': {'parent': test}};
+      let doc = new xmldoc.XmlDocument('<Test x="value"></Test>');
+      myobj.init(doc, 'Test');
       assert.equal(test.x, 'value');
       assert.equal(myobj.x, undefined);
     });
