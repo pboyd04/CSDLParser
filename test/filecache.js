@@ -64,6 +64,17 @@ describe('FileCache', function() {
         done();
       });
     });
+    it('Non existant file, no network', function(done) {
+      let myFC = new FileCache([__dirname + '/fixtures/'], false);
+      let promise = myFC.getFile('http://example.com/NonExistant.xml');
+      promise.then(() => {
+        assert.fail('Should not have file!');
+        done();
+      }).catch(e => {
+        assert.notEqual(e, null);
+        done();
+      });
+    });
     it('Bad URI', function(done) {
       let myFC = new FileCache([__dirname + '/fixtures/'], true);
       let promise = myFC.getFile('fake://_?*example.com/NonExistant.xml');

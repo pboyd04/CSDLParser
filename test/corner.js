@@ -30,6 +30,18 @@ describe('Corner Cases', function() {
       });
     });
   });
+  describe('EnumType', function() {
+    it('Member Child Element other than Annotation', function() {
+      csdl.parseMetadata('<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:DataServices><Schema Namespace="Test1" xmlns="http://docs.oasis-open.org/odata/ns/edm"><EnumType Name="Test2"><Member Name="Test3"><Child Name="Test4"></Child></Member></EnumType></Schema></edmx:DataServices></edmx:Edmx>', {}, (error, meta) => {
+        assert.equal(error, null);
+        assert.notEqual(meta, null);
+        assert.notEqual(meta.Test1, undefined);
+        let schema = meta.Test1;
+        assert.notEqual(schema.Test2, undefined);
+        done();
+      });
+    });
+  });
   describe('ParserCommon', function() {
     it('No attribute or element case', function() {
       let myobj = new ParserCommon();
