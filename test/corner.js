@@ -51,7 +51,7 @@ describe('Corner Cases', function() {
     it('Attribute parent case', function() {
       let test = {};
       let myobj = new ParserCommon();
-      myobj.validAttributes = {'x': {'parent': test}};
+      myobj.addAttributeHandler('x', myobj.addAttributeToObj, {'parent': test});
       let doc = new xmldoc.XmlDocument('<Test x="value"></Test>');
       myobj.init(doc, 'Test');
       assert.equal(test.x, 'value');

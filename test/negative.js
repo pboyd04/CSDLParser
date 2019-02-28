@@ -20,15 +20,15 @@ describe('Negative', function(){
   });
   it('Unknown Element', function(){
     let doc = new xmldoc.XmlDocument(invalidAnnotationElement);
-    assert.throws(function(){new Annotation(doc);}, Error, 'Unknown element name BadElement');
+    assert.throws(function(){let ann = new Annotation(); ann.init(doc);}, Error, 'Unknown element name BadElement');
   });
   it('Unknown Attribute', function(){
     let doc = new xmldoc.XmlDocument(invalidAnnotationAttribute);
-    assert.throws(function(){new Annotation(doc);}, Error, 'Unknown attribute name BadAttr');
+    assert.throws(function(){let ann = new Annotation(); ann.init(doc);}, Error, 'Unknown attribute name BadAttr');
   });
   it('Unknown Attribute Value', function(){
     let doc = new xmldoc.XmlDocument(invalidAnnotationBadBool);
-    assert.throws(function(){new Annotation(doc);}, Error, 'Unknown value Bad for attribute named Bool');
+    assert.throws(function(){let ann = new Annotation(); ann.init(doc);}, Error, 'Unknown value Bad for attribute named Bool');
   });
   it('Non CSDL', function(done) {
     csdl.parseMetadata(simpleWithText, {}, function(error, data){

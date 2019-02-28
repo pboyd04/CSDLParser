@@ -61,7 +61,7 @@ describe('Search', function(){
     type = csdl.findByType(fakeCache, 'Test2.Type2');
     assert.equal(type, null);
   });
-  it('Reference Search', function() {
+  it('Reference FindByType', function() {
     var type = csdl.findByType(fakeCache2, 'Test3.Type1');
     assert.notEqual(type, undefined);
     assert.notEqual(type, null);
@@ -93,6 +93,11 @@ describe('Search', function(){
   it('Get first', function(){
     let type = csdl.search(metadata, undefined, undefined);
     assert.notEqual(type, undefined);
+  });
+  it('Reference Search', function() {
+    var type = csdl.search(fakeCache2, 'References', null, true);
+    assert.notEqual(type, undefined);
+    assert.notEqual(type, null);
   });
 });
 /* vim: set tabstop=2 shiftwidth=2 expandtab: */
