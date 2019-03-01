@@ -31,7 +31,7 @@ describe('Corner Cases', function() {
     });
   });
   describe('EnumType', function() {
-    it('Member Child Element other than Annotation', function() {
+    it('Member Child Element other than Annotation', function(done) {
       csdl.parseMetadata('<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"><edmx:DataServices><Schema Namespace="Test1" xmlns="http://docs.oasis-open.org/odata/ns/edm"><EnumType Name="Test2"><Member Name="Test3"><Child Name="Test4"></Child></Member></EnumType></Schema></edmx:DataServices></edmx:Edmx>', {}, (error, meta) => {
         assert.equal(error, null);
         assert.notEqual(meta, null);
